@@ -94,6 +94,13 @@
         .mobile-header-hidden {
             transform: translateY(-100%);
         }
+        
+        /* Mobile menu button focus style for keyboard navigation */
+        #mobile-menu-btn:focus-visible {
+            outline: 2px solid #4f46e5;
+            outline-offset: 2px;
+            border-radius: 4px;
+        }
     </style>
 </head>
 
@@ -132,7 +139,7 @@
         <a href="index.html" class="text-xl font-bold" id="mobile-brand">
           <span id="mobile-brand-text">策略探索家</span>
         </a>
-        <button id="mobile-menu-btn" class="text-gray-700 hover:text-indigo-600 focus:outline-none p-1">
+        <button id="mobile-menu-btn" class="text-gray-700 hover:text-indigo-600 focus:outline-none p-3 min-w-[44px] min-h-[44px] flex items-center justify-center touch-action-manipulation">
           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
           </svg>
@@ -324,7 +331,8 @@
     const btn = document.getElementById('mobile-menu-btn');
     const menu = document.getElementById('mobile-menu');
     if (btn && menu) {
-      btn.addEventListener('click', () => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
         menu.classList.toggle('hidden');
       });
     }
@@ -514,7 +522,8 @@ function setupMobileMenu() {
   const btn = document.getElementById('mobile-menu-btn');
   const menu = document.getElementById('mobile-menu');
   if (btn && menu) {
-    btn.addEventListener('click', () => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
       menu.classList.toggle('hidden');
     });
   }

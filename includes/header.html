@@ -31,7 +31,7 @@
         <a href="index.html" class="text-xl font-bold" id="mobile-brand">
           <span id="mobile-brand-text">策略探索家</span>
         </a>
-        <button id="mobile-menu-btn" class="text-gray-700 hover:text-indigo-600 focus:outline-none p-1">
+        <button id="mobile-menu-btn" class="text-gray-700 hover:text-indigo-600 focus:outline-none p-3 min-w-[44px] min-h-[44px] flex items-center justify-center touch-action-manipulation">
           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
           </svg>
@@ -222,10 +222,19 @@
   function setupMobileMenu() {
     const btn = document.getElementById('mobile-menu-btn');
     const menu = document.getElementById('mobile-menu');
+    console.log('🎮 setupMobileMenu: btn=', !!btn, 'menu=', !!menu);
     if (btn && menu) {
-      btn.addEventListener('click', () => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        console.log('🍔 mobile menu clicked! toggling...');
+        const isHidden = menu.classList.contains('hidden');
+        console.log('   before toggle: hidden?', isHidden);
         menu.classList.toggle('hidden');
+        console.log('   after toggle: hidden?', menu.classList.contains('hidden'));
       });
+      console.log('✅ Mobile menu event listener attached');
+    } else {
+      console.warn('❌ Mobile menu elements not found');
     }
   }
 
